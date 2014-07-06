@@ -84,7 +84,7 @@ if($result) {
 				<p><b>MD5:</b> <span id="result-md5"></span></p>
 				<p><b>Coordinates:</b> <span id="result-coords"></span></p>
 				<br>
-				<div id="map" style="height: 400px;"></div>
+				<div id="map"></div>
 			</div>
 		</div>
 	</div>
@@ -100,6 +100,7 @@ if($result) {
 		$("#setup").submit(function(e) {
 			geocoder.geocode({address: $("#location").val()}, function(results_array, status) {
 
+				// Check geocode response
 				if(status != "OK") {
 					alert("Error getting graticule. Verify location and try again.");
 					console.log(status);
@@ -113,12 +114,10 @@ if($result) {
 
 				// Generate MD5
 				resulthash = window.md5($("#date") + "-" + $("#dji"));
-				$("#result-md5").text(resulthash);
-
-				// Split MD5
 				var hashparts = {};
 				hashparts.lat = resulthash.substr(0, resulthash.length / 2);
 				hashparts.lng = resulthash.substr(resulthash.length / 2);
+				$("#result-md5").text(hashparts.lat + " " + hashparts.lng);
 
 				// Convert to decimal and combine with graticule
 				coords.lat = parseFloat(graticule.lat + "." + parseInt(hashparts.lat, 16));
@@ -126,6 +125,7 @@ if($result) {
 				$("#result-coords").text(Math.round(coords.lat * 1000000) / 1000000 + ", " + Math.round(coords.lng * 1000000) / 1000000);
 
 				// Show map
+				$("#map").css("height", "400px");
 				var center = new google.maps.LatLng(coords.lat, coords.lng),
 					map = new google.maps.Map(document.getElementById("map"), {zoom: 11, center: center}),
 					marker = new google.maps.Marker({
