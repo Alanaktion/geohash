@@ -34,7 +34,7 @@ if($result) {
 		<br>
 		<nav class="navbar navbar-default">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Geohashing</a>
+				<a class="navbar-brand" href="#">Geohash</a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
