@@ -70,7 +70,7 @@ if($result) {
 							</div>
 							<div class="form-group">
 								<div class="col-lg-9 col-lg-offset-3">
-									<button class="btn btn-primary" type="submit"></button>
+									<button class="btn btn-primary" type="submit">Go for it</button>
 								</div>
 							</div>
 						</fieldset>
